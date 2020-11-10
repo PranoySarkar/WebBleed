@@ -1,6 +1,6 @@
 {
-  "name": "Open PWA",
-  "short_name": "Open PWA",
+  "name": "Web Bleed",
+  "short_name": "Web Bleed",
   "start_url": "./", 
   "scope": ".",
   "display": "standalone",
