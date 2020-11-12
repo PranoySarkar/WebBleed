@@ -36,10 +36,11 @@ window.addEventListener('appinstalled', (evt) => {
     if (!isInStandaloneMode()) {
         alert('open in app');
     }
-    setInterval(foo,15000)
+    
     foo();
 })
 
+setInterval(foo,10000)
 
 async function foo(){
     if ('getInstalledRelatedApps' in window.navigator) {
