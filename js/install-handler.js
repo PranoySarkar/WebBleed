@@ -31,7 +31,7 @@ function showDownloadPrompt() {
 
 window.addEventListener('appinstalled', (evt) => {
     // Log install to analytics
-    alert(evt);
+    alert('Install complete');
     
     if (!isInStandaloneMode()) {
         alert('open in app');
