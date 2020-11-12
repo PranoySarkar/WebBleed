@@ -36,14 +36,14 @@ window.addEventListener('appinstalled', (evt) => {
     if (!isInStandaloneMode()) {
         alert('open in app');
     }
-    //foo();
-});
+    foo();
+})
 
 
-/*async function foo(){
+async function foo(){
     if ('getInstalledRelatedApps' in window.navigator) {
         const relatedApps = await navigator.getInstalledRelatedApps();
-        alert(relatedApps)
+        alert('Related',relatedApps.length)
         relatedApps.forEach((app) => {
           //if your PWA exists in the array it is installed
           alert(app.platform, app.url);
@@ -51,7 +51,7 @@ window.addEventListener('appinstalled', (evt) => {
       }
 }
 
-foo();*/
+//foo();
 
 
 const isInStandaloneMode = () =>(window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone) || document.referrer.includes('android-app://');
