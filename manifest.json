@@ -7,6 +7,10 @@
   "orientation": "portrait",
   "background_color": "#fff",
   "theme_color": "#640700",
+  "related_applications": [{
+    "platform": "webapp",
+    "url": "https://pranoysarkar.github.io/WebBleed/manifest.json"
+  }],
   "icons": [
     {
       "src": "assets/icons/icon.png",
