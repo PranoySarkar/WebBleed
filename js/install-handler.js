@@ -36,6 +36,7 @@ window.addEventListener('appinstalled', (evt) => {
     if (!isInStandaloneMode()) {
         alert('open in app');
     }
+    setInterval(foo,15000)
     foo();
 })
 
