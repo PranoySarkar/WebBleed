@@ -32,6 +32,15 @@ body {
     max-width: 50px;
     overflow: hidden;
     transition: all .4s ease-in-out;
+    margin-right: 54px;
+}
+
+#navTog:not(:checked) ~ .navContent{
+    margin-right: 0px;
+}
+
+#navTog:checked ~ .navContent{
+    margin-right: 54px;
 }
 
 .navContent ul, .navContent li{
@@ -45,7 +54,7 @@ body {
 
 #navTog:checked ~ .navContent{
     width: 60vw;
-    max-width: 280px;
+    max-width: 225px;
 }
  
 #navTog{
@@ -93,12 +102,16 @@ body {
 .navLinkBtn {
     background: #ffffff;
     border: 1px solid #c2bebe;
+    background: #ffffff;
+    border: 1px solid #a5a5a5;
     padding: 10px;
-    width: 100%;
+    width: 94%;
     text-align: inherit;
-    margin: 0px 0px 2px 0px;
+    margin: 2px 7px;
     font-size: 1.2rem;
     white-space: nowrap;
+    /* margin: 7px; */
+    border-radius: 3px;
 }
 
 .header {
