@@ -30,18 +30,37 @@
 </head>
 
 <body>
-    <div id="appContainer" class="container">
-        <header>
-            <h1>Web Bleed</h1>
-            <div id="version">
 
+    <header>
+       
+    </header>
+    <div class="mainContainer">
+
+        <div id="navPannel">
+          
+            <input type="checkbox" id="navTog">
+            <label for="navTog">
+                <span id="showLabel">
+                    <img src="assets/icons/arrow.png" alt="">
+                </span>
+            </label>
+            <div class="navContent">
+                <div class="header">
+                    <img src="assets/icons/icon.png" alt="">
+                    <h1>Web Bleed</h1>
+                <div id="version"></div>
+
+                </div>
+               
+                <ul>
+                    <li><button class="navLinkBtn">Home</button></li>
+                    <li><button class="navLinkBtn">Contact Picker</button></li>
+                </ul>
             </div>
-        </header>
-        <div class="body">
 
+        </div>
+        <div id="playground">
            
-            <a target="_blank" href="https://pranoysarkar.github.io/WebBleed/">Open in app</a>
-
             <div class="controllers">
                 <div class="downloadPrompt">
                     <div class="promptControllers">
@@ -49,19 +68,11 @@
                     </div>
                 </div>
             </div>
-            <footer>
-            </footer>
-
-            <div class="hiddenElements">
-            </div>
-
-
         </div>
     </div>
+    <footer>
+    </footer>
 
-    <div class="bigFullScreen">
-
-    </div>
     <script type="text/javascript">
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker

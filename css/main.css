@@ -1,3 +1,6 @@
+*{
+    box-sizing: border-box;
+}
 html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: #FFF0;
@@ -7,39 +10,114 @@ body {
     margin: 0;
     color: #636363;
     font-family: 'Open Sans', sans-serif;
-}
-
-.body {
-    padding: 1rem;
-}
-
-header {
-    text-align: center;
-}
-.downloadPrompt {
-    display: none;
-    padding: 10px;
-    box-shadow: 0px 0 7px 4px #00000030;
-    justify-content: center;
-    max-width: 300px;
-    margin: auto;
-    margin-top: 60px;
-}
-
-.downloadButton {
-    background: #109d58;
-    color: aliceblue;
-    padding: 5px 10px;
-    min-width: 100px;
-    border-radius: 2px;
-    border: 1px solid #00723b;
-    text-transform: uppercase;
-    /* box-shadow: -10px 6px 5px 1px #109d581a; */
-}
-
-#appContainer {
+    height: 100vh;
     overflow: hidden;
     display: grid;
-    height: 100vh;
     grid-template-rows: auto 1fr auto;
+}
+
+.mainContainer{
+    display: flex;
+}
+
+#navPannel {
+    background: #e5e5e5;
+    box-shadow: 3px 6px 7px #00000075;
+    position: relative;
+}
+.navContent {
+    
+    width: 50px;
+    max-width: 50px;
+    overflow: hidden;
+    transition: all .4s ease-in-out;
+}
+
+.navContent ul, .navContent li{
+    margin: 0;
+    padding: 0;
+}
+
+.navContent li{
+    
+}
+
+#navTog:checked ~ .navContent{
+    width: 60vw;
+    max-width: 280px;
+}
+ 
+#navTog{
+    display: none
+}
+  
+#showLabel, #hideLabel{
+    
+
+    width:20%;
+    min-width: 50px;
+    height: 100%;
+    position: absolute;
+    color: #fff;
+    right: 0;
+    background: linear-gradient(45deg, #9e9e9e75, #9e9e9e);
+    cursor: pointer;
+    
+}
+
+
+#navTog:checked ~ label > #hideLabel{
+    display: inline;
+}
+
+#showLabel > img{
+    transform: rotate(0deg);
+    transition: all .3s;
+    transition: all .3s;
+    border: 1px solid #9f9a9a;
+    margin: 5px;
+    width: 80%;
+    border-radius: 26px;
+    box-shadow: 0 0 7px 2px #4c4a4a70;
+}
+#navTog:not(:checked) ~ label > #showLabel > img{
+    transform: rotate(180deg);
+}
+
+#navTog ~ label {
+    display: block;
+    text-align: right;
+}
+
+.navLinkBtn {
+    background: #ffffff;
+    border: 1px solid #c2bebe;
+    padding: 10px;
+    width: 100%;
+    text-align: inherit;
+    margin: 0px 0px 2px 0px;
+    font-size: 1.2rem;
+    white-space: nowrap;
+}
+
+.header {
+    background: white;
+    overflow: hidden;
+    min-width: 50px;
+    /* width: 100%; */
+    min-height: 149px;
+    /* border: 1px solid #f2a8a8; */
+    margin-bottom: 10px;
+    padding: 7px;
+    margin: 7px;
+    border-radius: 4px;
+}
+
+.header img {
+    max-width: 90px;
+}
+
+.header h1 {
+    margin: 0;
+    white-space: nowrap;
 }

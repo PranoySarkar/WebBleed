@@ -33,14 +33,13 @@ window.addEventListener('appinstalled', (evt) => {
     // Log install to analytics
     alert('Install complete');
     
-    if (!isInStandaloneMode()) {
+    /*if (!isInStandaloneMode()) {
         alert('open in app');
-    }
+    }*/
     
     foo();
 })
 
-setInterval(foo,10000)
 
 async function foo(){
     if ('getInstalledRelatedApps' in window.navigator) {
