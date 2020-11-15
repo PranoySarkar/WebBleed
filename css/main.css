@@ -16,8 +16,9 @@ body {
     grid-template-rows: auto 1fr auto;
 }
 
-.mainContainer{
-    display: flex;
+.mainContainer {
+    display: grid;
+    grid-template-columns: auto 1fr;
 }
 
 #navPannel {
@@ -120,4 +121,9 @@ body {
 .header h1 {
     margin: 0;
     white-space: nowrap;
+}
+
+iframe {
+    min-width: 100%;
+    height: 100%;
 }
