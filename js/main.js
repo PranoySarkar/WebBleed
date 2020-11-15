@@ -7,6 +7,17 @@ function main(){
     vaildateCacheIfOnline()
     .then(_=>{
         
+
+        document.querySelector(`#navLinkUl`).addEventListener('click',(event)=>{
+            let ot=event.target;
+            if(ot.classList.contains(`navLinkBtn`)){
+                
+                document.querySelector('#playgroundIframe').src=ot.dataset.url;
+            }
+            
+        })
+
+
     })
 
 }
@@ -52,4 +63,6 @@ function vaildateCacheIfOnline(){
     })
 
 }
+
+
 

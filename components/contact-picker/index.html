@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact picker API</title>
+</head>
+
+<body>
+    <h1>Contact Picker API</h1>
+
+    <button onclick="foo()"> select contact </button>
+
+    <script>
+        async function foo() {
+            const supported = ('contacts' in navigator && 'ContactsManager' in window);
+            if (!supported) {
+                alert('Contact Picker not supported');
+            } else {
+                const props = ['name', 'email', 'tel', 'address', 'icon'];
+                const opts = { multiple: true };
+
+                try {
+                    const contacts = await navigator.contacts.select(props, opts);
+                    alert(JSON.stringify(contacts));
+                } catch (ex) {
+                    alert(ex);
+                    // Handle any errors here.
+                }
+            }
+        }
+      
+
+        
+
+
+    </script>
+</body>
+
+</html>
