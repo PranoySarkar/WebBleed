@@ -54,52 +54,56 @@
 
                 <ul id="navLinkUl">
                     <li><button data-url="components/home/index.html" class="navLinkBtn">Home</button></li>
-                    <li><button data-url="components/contact-picker/index.html"  class="navLinkBtn">Contact Picker</button></li>
+                    <li><button 
+                        data-inpage="true"
+                        data-id="contectPicker"
+                        class="navLinkBtn">Contact Picker</button></li>
                 </ul>
-            </div>
-
-        </div>
-        <div id="playground">
-
-            <h1>Contact Picker API</h1>
-
-            <button onclick="foox()"> select contact </button>
-        
-            <script>
-                async function foox() {
-                    const supported = ('contacts' in navigator && 'ContactsManager' in window);
-                    if (!supported) {
-                        alert('Contact Picker not supported');
-                    } else {
-                        const props = ['name', 'email', 'tel', 'address', 'icon'];
-                        const opts = { multiple: true };
-        
-                        try {
-                            const contacts = await navigator.contacts.select(props, opts);
-                            alert(JSON.stringify(contacts));
-                        } catch (ex) {
-                            alert(ex);
-                            // Handle any errors here.
-                        }
-                    }
-                }
-              
-        
-                
-        
-        
-            </script>
-
-            <iframe id="playgroundIframe" src="components/home/index.html" frameborder="0"></iframe>
-          
-
-           <div class="controllers">
-                <div class="downloadPrompt">
-                    <div class="promptControllers">
-                        <button class="downloadButton">Download </button>
+                <div class="controllers">
+                    <div class="downloadPrompt">
+                        <div class="promptControllers">
+                            <button class="downloadButton">Download </button>
+                        </div>
                     </div>
                 </div>
-            </div> 
+            </div>
+
+         
+        </div>
+        <div id="playground">
+            <iframe  class="component" id="playgroundIframe" src="components/home/index.html" frameborder="0"></iframe>
+
+            <div class="component" id="contectPicker" >
+                <div>
+                    <h1>Contact Picker API</h1>
+                
+                    <button onclick="foox()"> select contact </button>
+                
+                    <script>
+                        async function foox() {
+                            const supported = ('contacts' in navigator && 'ContactsManager' in window);
+                            if (!supported) {
+                                alert('Contact Picker not supported');
+                            } else {
+                                const props = ['name', 'email', 'tel', 'address', 'icon'];
+                                const opts = { multiple: true };
+                
+                                try {
+                                    const contacts = await navigator.contacts.select(props, opts);
+                                    alert(JSON.stringify(contacts));
+                                } catch (ex) {
+                                    alert(ex);
+                                    // Handle any errors here.
+                                }
+                            }
+                        }
+                    </script>
+                </div>
+                
+            </div>
+          
+
+  
         </div>
     </div>
     <footer>

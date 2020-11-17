@@ -11,8 +11,14 @@ function main(){
         document.querySelector(`#navLinkUl`).addEventListener('click',(event)=>{
             let ot=event.target;
             if(ot.classList.contains(`navLinkBtn`)){
-                
-                document.querySelector('#playgroundIframe').src=ot.dataset.url;
+                document.querySelectorAll('.component').forEach(e=>e.style.display='none')
+                if(ot.dataset.inpage){
+                    document.querySelector(`#${ot.dataset.id}`).style.display=`block`;
+                }else{
+                    document.querySelector('#playgroundIframe').style.display='block';
+                    document.querySelector('#playgroundIframe').src=ot.dataset.url;
+                }
+               
             }
             
         })
