@@ -25,6 +25,8 @@ self.addEventListener('fetch', function (event) {
   if (event.request.url.includes('clean-cache')) {
     caches.delete(cacheName);
     console.log('Cache cleared')
+
+
   }
 
   event.respondWith(caches.match(event.request).then(function (response) {
@@ -50,4 +52,13 @@ self.addEventListener('activate', function (e) {
     })
   );
   return self.clients.claim();
+});
+
+const channel = new BroadcastChannel('sw-messages');
+channel.addEventListener('message', event => {
+  console.log('Received', event.data);
+  self.registration.showNotification('Hello', {
+    body: 'World',
+    img:'/WebBleed/assets/icons/icon.png'
+  })
 });

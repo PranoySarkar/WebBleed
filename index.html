@@ -54,10 +54,13 @@
 
                 <ul id="navLinkUl">
                     <li><button data-url="components/home/index.html" class="navLinkBtn">Home</button></li>
-                    <li><button 
-                        data-inpage="true"
-                        data-id="contectPicker"
-                        class="navLinkBtn">Contact Picker</button></li>
+                    <li>
+                        <button data-inpage="true" data-id="contectPicker" class="navLinkBtn">Contact Picker
+                        </button>
+                    </li>
+                    <li>
+                        <button data-url="components/notification/index.html" class="navLinkBtn">Push Notifiaction</button>
+                    </li>
                 </ul>
                 <div class="controllers">
                     <div class="downloadPrompt">
@@ -68,17 +71,17 @@
                 </div>
             </div>
 
-         
+
         </div>
         <div id="playground">
-            <iframe  class="component" id="playgroundIframe" src="components/home/index.html" frameborder="0"></iframe>
+            <iframe class="component" id="playgroundIframe" src="components/home/index.html" frameborder="0"></iframe>
 
-            <div class="component" id="contectPicker" >
+            <div class="component" id="contectPicker">
                 <div>
                     <h1>Contact Picker API</h1>
-                
+
                     <button onclick="foox()"> select contact </button>
-                
+
                     <script>
                         async function foox() {
                             const supported = ('contacts' in navigator && 'ContactsManager' in window);
@@ -87,7 +90,7 @@
                             } else {
                                 const props = ['name', 'email', 'tel', 'address', 'icon'];
                                 const opts = { multiple: true };
-                
+
                                 try {
                                     const contacts = await navigator.contacts.select(props, opts);
                                     alert(JSON.stringify(contacts));
@@ -99,11 +102,11 @@
                         }
                     </script>
                 </div>
-                
-            </div>
-          
 
-  
+            </div>
+
+
+
         </div>
     </div>
     <footer>

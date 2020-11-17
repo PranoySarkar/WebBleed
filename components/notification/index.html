@@ -1,0 +1,14 @@
+<button onclick="foo()">Grant Permission</button>
+<button onclick="generatePush()">Generate Push Notification</button>
+<script>
+    function foo() {
+        Notification.requestPermission().then(event => {
+            alert(event);
+        });
+    }
+
+    function generatePush() {
+        const channel = new BroadcastChannel('sw-messages');
+        channel.postMessage({ title: 'Hello from SW' });
+    }
+</script>
