@@ -59,6 +59,20 @@ channel.addEventListener('message', event => {
   console.log('Received', event.data);
   self.registration.showNotification('Hello', {
     body: 'World',
-    img:'/WebBleed/assets/icons/icon.png'
+    icon: 'assets/icons/icon.png',
+    actions:[
+      {
+        action: 'coffee-action',
+        title: 'View Now',
+      },
+      {
+        action: 'coffee-action-2',
+        title: 'postpone',
+      }
+    ]
+  }).then(evt => {
+    console.log(evt)
+  }).catch(err => {
+    console.log(err)
   })
 });
