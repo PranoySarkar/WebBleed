@@ -57,22 +57,36 @@ self.addEventListener('activate', function (e) {
 const channel = new BroadcastChannel('sw-messages');
 channel.addEventListener('message', event => {
   console.log('Received', event.data);
-  self.registration.showNotification('Hello', {
-    body: 'World',
-    icon: 'assets/icons/icon.png',
-    actions:[
+  self.registration.showNotification('This is title', {
+
+    "body": "This is body",
+    "icon": "assets/icons/icon.png",
+    "actions": [
       {
-        action: 'coffee-action',
-        title: 'View Now',
-      },
-      {
-        action: 'coffee-action-2',
-        title: 'postpone',
+        "action": "contact-picker",
+        "title": "Action"
       }
     ]
   }).then(evt => {
     console.log(evt)
   }).catch(err => {
     console.log(err)
+  })
+});
+
+let lastNotificationId = -1;
+
+self.addEventListener('sync', function (event) {
+  console.log("sync event", event);
+  fetch(`config.json?rand=${new Date().getTime()}`).then(res => res.json()).then(data => {
+    if (lastNotificationId != data.notification.id) {
+      lastNotificationId = data.notification.id;
+      self.registration.showNotification(data.notification.title, data.notification).then(evt => {
+        console.log(evt)
+      }).catch(err => {
+        console.log(err)
+      })
+
+    }
   })
 });
