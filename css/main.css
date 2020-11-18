@@ -142,3 +142,15 @@ iframe {
     min-width: 100%;
     height: 100%;
 }
+
+.downloadButton {
+    background: #689f38;
+    padding: 10px;
+    color: #FFF;
+    border: unset;
+    border-radius: 3px;
+    /* width: 94%; */
+    /* margin-left: 3%; */
+    font-size: 1.2rem;
+    white-space: nowrap;
+}
