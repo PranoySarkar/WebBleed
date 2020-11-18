@@ -143,6 +143,10 @@ iframe {
     height: 100%;
 }
 
+.downloadPrompt{
+    display: "none";
+}
+
 .downloadButton {
     background: #689f38;
     padding: 10px;

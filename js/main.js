@@ -18,6 +18,7 @@ function main(){
                     document.querySelector('#playgroundIframe').style.display='block';
                     document.querySelector('#playgroundIframe').src=ot.dataset.url;
                 }
+                document.querySelector('#navTog').checked=false
                
             }
             
