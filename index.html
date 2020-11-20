@@ -59,14 +59,13 @@
                 </div>
 
                 <ul id="navLinkUl">
-                    <li><button data-url="components/home/index.html" class="navLinkBtn">Home</button></li>
+                    <li><button data-url="components/home/index.html" class="navLinkBtn">🏠 Home</button></li>
                     <li>
-                        <button data-inpage="true" data-id="contectPicker" class="navLinkBtn">
-                            Contact Picker
+                        <button data-inpage="true" data-id="contectPicker" class="navLinkBtn">📘 Contact Picker
                         </button>
                     </li>
                     <li>
-                        <button data-url="components/notification/index.html" class="navLinkBtn">Push
+                        <button data-url="components/notification/index.html" class="navLinkBtn">🔔 Push
                             Notifiaction</button>
                     </li>
                 </ul>
@@ -79,12 +78,58 @@
             <iframe class="component" id="playgroundIframe" src="components/home/index.html" frameborder="0"></iframe>
 
             <div class="component" id="contectPicker">
+                <style>
+                    #contectPicker {
+                        display: none;
+                    }
+
+                    div#contactPickerDemo {
+                        background: #E91E63;
+                        padding: 10px;
+                        display: grid;
+                        grid-template-rows: 40px 40px;
+                        grid-gap: 5px;
+                        border-radius: 3px;
+                        overflow: hidden;
+
+                    }
+
+                    #contactPickerDemo>input {
+                        padding: 10px;
+                        margin: 0 10px;
+                        border-radius: 3px;
+                        border: 1px solid #b95778;
+                    }
+
+                    #contactPickerDemo>button {
+                        background: #FFF;
+                        border: 1px solid #8d0d0d;
+                        box-shadow: 4px 3px 5px 0px #a30037;
+                        border-radius: 4px;
+                    }
+                </style>
+
                 <div>
                     <h2>📘 Contact Picker API</h2>
                     <p>
                         This API helps you select user contacts form phone contact book. This is improve the UX in many
                         applications
                         dealing with Phone numbers, like TopUp Recharge Web Sites, various regestrations forms etc.
+                    </p>
+
+
+
+                    <div id="contactPickerDemo">
+                        <input type="text" id="contactDisplay" placeholder="Phone No">
+                        <button onclick="selectContact()"> 📘 Select Contact </button>
+                    </div>
+                    <pre id="contactPickerRaw">
+
+                    </pre>
+
+
+                    <p>
+                        This API only works after user has given permission and requested form top Frame (not form iFrame)
                     </p>
 
                     <p>
@@ -96,43 +141,6 @@
                     </ul>
 
                     </p>
-                    <style>
-                        #contectPicker{
-                            display: none;
-                        }
-                        div#contactPickerDemo {
-                            background: #E91E63;
-                            padding: 10px;
-                            display: grid;
-                            grid-template-rows: 40px 40px;
-                            grid-gap: 5px;
-                            border-radius: 3px;
-                            overflow: hidden;
-
-                        }
-
-                        #contactPickerDemo>input {
-                            padding: 10px;
-                            margin: 0 10px;
-                            border-radius: 3px;
-                            border: 1px solid #b95778;
-                        }
-
-                        #contactPickerDemo>button {
-                            background: #FFF;
-                            border: 1px solid #8d0d0d;
-                            box-shadow: 4px 3px 5px 0px #a30037;
-                            border-radius: 4px;
-                        }
-                    </style>
-                    <div id="contactPickerDemo">
-                        <input type="text" id="contactDisplay" placeholder="Phone No">
-                        <button onclick="selectContact()"> 📘 Select Contact </button>
-                    </div>
-                    <pre id="contactPickerRaw">
-
-                    </pre>
-
 
 
                     <script>
@@ -148,12 +156,13 @@
 
                                 try {
                                     const contacts = await navigator.contacts.select(props, opts);
-                                    document.querySelector('#contactPickerRaw').innerHTML=(JSON.stringify(contacts,null,' '));
+                                    document.querySelector('#contactPickerRaw').innerHTML = `Raw data \n` + (JSON.stringify(contacts, null, ' '));
                                     document.querySelector('#contactDisplay').value = contacts[0].tel[0];
 
 
                                 } catch (ex) {
                                     alert(ex);
+                                    document.querySelector('#contactDisplay').value='';
                                     // Handle any errors here.
                                 }
                             }
