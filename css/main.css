@@ -19,7 +19,7 @@ body {
 .mainContainer {
     display: grid;
     grid-template-columns: auto 1fr;
-    overflow-y: hidden;
+    overflow: hidden;
     height: 100vh;
 }
 
@@ -138,13 +138,23 @@ body {
     white-space: nowrap;
 }
 
-iframe {
+#playground {
+    background: #e5e5e5;
+    padding: 11px;
+}
+
+.component,iframe {
+    min-width: 100%;
     min-width: 100%;
     height: 100%;
+    border: 1px solid #a6a6a6;
+    background: #FFF;
+    padding: 10px;
+    border-radius: 2px;
 }
 
 .downloadPrompt{
-    display: "none";
+    display: none;
 }
 
 .downloadButton {
