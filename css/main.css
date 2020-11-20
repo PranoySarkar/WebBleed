@@ -17,10 +17,11 @@ body {
 }
 
 .mainContainer {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    overflow: hidden;
+    display: flex;
+    /* grid-template-columns: auto 1fr; */
+    /* overflow-y: hidden; */
     height: 100vh;
+    
 }
 
 #navPannel {
@@ -141,11 +142,12 @@ body {
 #playground {
     background: #e5e5e5;
     padding: 10px;
+    overflow: hidden;
 }
 
 .component,iframe {
 
-    width:  calc(100% -  10px);
+    width:  calc(100% );
     height: 100%;
     border: 1px solid #a6a6a6;
     background: #FFF;
