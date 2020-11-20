@@ -121,7 +121,7 @@
                         }
                     </style>
                     <div id="contactPickerDemo">
-                        <input type="text">
+                        <input type="text" id="contactDisplay">
                         <button onclick="selectContact()"> 📘 Select Contact </button>
                     </div>
 
@@ -134,13 +134,15 @@
                             if (!supported) {
                                 alert('Contact Picker not supported');
                             } else {
-                                alert((await navigator.contacts.getProperties()))
-                                const props = ['name', 'email', 'tel', 'address', 'icon'];
+                                //alert((await navigator.contacts.getProperties()))
+                                const props =await navigator.contacts.getProperties() // ['name', 'email', 'tel', 'address', 'icon'];
                                 const opts = { multiple: true };
 
                                 try {
                                     const contacts = await navigator.contacts.select(props, opts);
+                                    document.querySelector('#contactDisplay').value=contacts.tel[0];
                                     alert(JSON.stringify(contacts));
+                                   
                                 } catch (ex) {
                                     alert(ex);
                                     // Handle any errors here.

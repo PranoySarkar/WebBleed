@@ -140,12 +140,12 @@ body {
 
 #playground {
     background: #e5e5e5;
-    padding: 11px;
+    padding: 10px;
 }
 
 .component,iframe {
-    min-width: 100%;
-    min-width: 100%;
+
+    width:  calc(100% -  10px);
     height: 100%;
     border: 1px solid #a6a6a6;
     background: #FFF;
