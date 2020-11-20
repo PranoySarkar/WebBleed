@@ -140,8 +140,9 @@
 
                                 try {
                                     const contacts = await navigator.contacts.select(props, opts);
-                                    document.querySelector('#contactDisplay').value=contacts.tel[0];
+                                    
                                     alert(JSON.stringify(contacts));
+                                    document.querySelector('#contactDisplay').value=contacts[0].tel[0];
                                    
                                 } catch (ex) {
                                     alert(ex);
