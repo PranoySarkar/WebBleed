@@ -148,7 +148,7 @@
 
                                 try {
                                     const contacts = await navigator.contacts.select(props, opts);
-                                    document.querySelector('#contactPickerRaw').innerHTML=(JSON.stringify(contacts,null,'\t'));
+                                    document.querySelector('#contactPickerRaw').innerHTML=(JSON.stringify(contacts,null,' '));
                                     document.querySelector('#contactDisplay').value = contacts[0].tel[0];
 
 
