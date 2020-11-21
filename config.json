@@ -1,17 +1,14 @@
 {
-    "version":1.87,
-    "notification":
-        {
-            "id":9,
-            "title":"Contact Picker",
-            "body": "Contact Picker API Demo",
-            "icon": "assets/icons/icon.png",
-            "actions":[
-              {
-                "action": "contact-picker",
-                "title": "View Now"
-              }
-            ]
-          }
-    
+    "version": 1.88,
+    "notification": {
+        "id": 9,
+        "title": "Contact Picker",
+        "body": "Contact Picker API Demo",
+        "icon": "assets/icons/icon.png",
+        "actions": [{
+            "action": "contact-picker",
+            "title": "View Now"
+        }]
+    }
+
 }
