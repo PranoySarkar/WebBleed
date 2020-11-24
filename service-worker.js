@@ -8,6 +8,11 @@ let filesToCache = [
     "js/settings.js",
     "css/main.css",
     "assets/icons/icon.png",
+    "assets/icons/arrow.png",
+
+    "components/home/index.html",
+    "components/notification/index.html",
+
     "manifest.json"
     // add your assets here 
     // ❗️❕donot add config.json here ❗️❕
