@@ -10,8 +10,7 @@
     <!--Social meta-->
     <meta property="og:title" content="Open Github PWA" />
     <meta property="og:url" content="" />
-    <meta property="og:description"
-        content="This is a PWA boilerplate, with cache busting mechanism and preconfigured Github Pages deployment" />
+    <meta property="og:description" content="This is a PWA boilerplate, with cache busting mechanism and preconfigured Github Pages deployment" />
     <meta property="og:image" content="/assets/icons/icon.png" />
     <meta property="og:type" content="website" />
     <!---->
@@ -38,8 +37,10 @@
 
         <div id="navPannel">
 
-            <input type="checkbox" id="navTog" checked>
+            <input type="checkbox" id="navTog">
             <label for="navTog">
+          
+              
                 <span id="showLabel">
                     <img src="assets/icons/arrow.png" alt="">
                 </span>
@@ -75,6 +76,13 @@
 
         </div>
         <div id="playground">
+            <div class="spinner">
+                <div class="lds-facebook">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
             <iframe class="component" id="playgroundIframe" src="components/home/index.html" frameborder="0"></iframe>
 
             <div class="component" id="contectPicker">
@@ -82,7 +90,7 @@
                     #contectPicker {
                         display: none;
                     }
-
+                    
                     div#contactPickerDemo {
                         background: #E91E63;
                         padding: 10px;
@@ -91,16 +99,15 @@
                         grid-gap: 5px;
                         border-radius: 3px;
                         overflow: hidden;
-
                     }
-
+                    
                     #contactPickerDemo>input {
                         padding: 10px;
                         margin: 0 10px;
                         border-radius: 3px;
                         border: 1px solid #b95778;
                     }
-
+                    
                     #contactPickerDemo>button {
                         background: #FFF;
                         border: 1px solid #8d0d0d;
@@ -109,12 +116,10 @@
                     }
                 </style>
 
-                <div>
+                <div class="componentContent">
                     <h2>📘 Contact Picker API</h2>
                     <p>
-                        This API helps you select user contacts form phone contact book. This is improve the UX in many
-                        applications
-                        dealing with Phone numbers, like TopUp Recharge Web Sites, various regestrations forms etc.
+                        This API helps you select user contacts form phone contact book. This is improve the UX in many applications dealing with Phone numbers, like TopUp Recharge Web Sites, various regestrations forms etc.
                     </p>
 
 
@@ -134,11 +139,11 @@
 
                     <p>
                         Links
-                    <ul>
-                        <li>
-                            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Contact_Picker_API">MDN link</a>
-                        </li>
-                    </ul>
+                        <ul>
+                            <li>
+                                <a href="https://developer.mozilla.org/en-US/docs/Web/API/Contact_Picker_API">MDN link</a>
+                            </li>
+                        </ul>
 
                     </p>
 
@@ -152,7 +157,9 @@
                             } else {
                                 //alert((await navigator.contacts.getProperties()))
                                 const props = await navigator.contacts.getProperties() // ['name', 'email', 'tel', 'address', 'icon'];
-                                const opts = { multiple: true };
+                                const opts = {
+                                    multiple: true
+                                };
 
                                 try {
                                     const contacts = await navigator.contacts.select(props, opts);
@@ -162,7 +169,7 @@
 
                                 } catch (ex) {
                                     alert(ex);
-                                    document.querySelector('#contactDisplay').value='';
+                                    document.querySelector('#contactDisplay').value = '';
                                     // Handle any errors here.
                                 }
                             }
@@ -183,7 +190,7 @@
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker
                 .register(`service-worker.js`)
-                .then(function () {
+                .then(function() {
                     console.log("Service Worker Registered");
                 });
         }

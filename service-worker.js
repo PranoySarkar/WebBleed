@@ -1,92 +1,89 @@
-let cacheName = "WebBleedPWA";// 👈 any unique name
+let cacheName = "WebBleedPWA"; // 👈 any unique name
 
 let filesToCache = [
-  "/WebBleed/", // 👈 your repository name , both slash are important
-  "service-worker.js",
-  "js/main.js",
-  "js/install-handler.js",
-  "js/settings.js",
-  "css/main.css",
-  "assets/icons/icon.png",
-  "manifest.json"
-  // add your assets here 
-  // ❗️❕donot add config.json here ❗️❕
+    "/WebBleed/", // 👈 your repository name , both slash are important
+    "service-worker.js",
+    "js/main.js",
+    "js/install-handler.js",
+    "js/settings.js",
+    "css/main.css",
+    "assets/icons/icon.png",
+    "manifest.json"
+    // add your assets here 
+    // ❗️❕donot add config.json here ❗️❕
 ];
 
-self.addEventListener("install", function (event) {
-  event.waitUntil(caches.open(cacheName).then((cache) => {
-    console.log('installed successfully')
-    return cache.addAll(filesToCache);
-  }));
+self.addEventListener("install", function(event) {
+    event.waitUntil(caches.open(cacheName).then((cache) => {
+        console.log('installed successfully')
+        return cache.addAll(filesToCache);
+    }));
 });
 
-self.addEventListener('fetch', function (event) {
+self.addEventListener('fetch', function(event) {
 
-  if (event.request.url.includes('clean-cache')) {
-    caches.delete(cacheName);
-    console.log('Cache cleared')
+    if (event.request.url.includes('clean-cache')) {
+        caches.delete(cacheName);
+        console.log('Cache cleared')
 
 
-  }
-
-  event.respondWith(caches.match(event.request).then(function (response) {
-    if (response) {
-      console.log('served form cache')
-    } else {
-      console.log('Not serving from cache ', event.request.url)
     }
-    return response || fetch(event.request);
-  })
-  );
+
+    event.respondWith(caches.match(event.request).then(function(response) {
+        if (response) {
+            console.log('served form cache')
+        } else {
+            console.log('Not serving from cache ', event.request.url)
+        }
+        return response || fetch(event.request);
+    }));
 });
 
-self.addEventListener('activate', function (e) {
-  e.waitUntil(
-    caches.keys().then(function (keyList) {
-      return Promise.all(keyList.map(function (key) {
-        if (key !== cacheName) {
-          console.log('service worker: Removing old cache', key);
-          return caches.delete(key);
-        }
-      }));
-    })
-  );
-  return self.clients.claim();
+self.addEventListener('activate', function(e) {
+    e.waitUntil(
+        caches.keys().then(function(keyList) {
+            return Promise.all(keyList.map(function(key) {
+                if (key !== cacheName) {
+                    console.log('service worker: Removing old cache', key);
+                    return caches.delete(key);
+                }
+            }));
+        })
+    );
+    return self.clients.claim();
 });
 
 const channel = new BroadcastChannel('sw-messages');
 channel.addEventListener('message', event => {
-  console.log('Received', event.data);
-  self.registration.showNotification('This is title', {
+    console.log('Received', event.data);
+    self.registration.showNotification(event.data.title, {
 
-    "body": "This is body",
-    "icon": "assets/icons/icon.png",
-    "actions": [
-      {
-        "action": "contact-picker",
-        "title": "Action"
-      }
-    ]
-  }).then(evt => {
-    console.log(evt)
-  }).catch(err => {
-    console.log(err)
-  })
+        "body": event.data.body,
+        "icon": "assets/icons/icon.png",
+        "actions": [{
+            "action": "contact-picker",
+            "title": event.data.btn
+        }]
+    }).then(evt => {
+        console.log(evt)
+    }).catch(err => {
+        console.log(err)
+    })
 });
 
 let lastNotificationId = -1;
 
-self.addEventListener('sync', function (event) {
-  console.log("sync event", event);
-  fetch(`config.json?rand=${new Date().getTime()}`).then(res => res.json()).then(data => {
-    if (lastNotificationId != data.notification.id) {
-      lastNotificationId = data.notification.id;
-      self.registration.showNotification(data.notification.title, data.notification).then(evt => {
-        console.log(evt)
-      }).catch(err => {
-        console.log(err)
-      })
+self.addEventListener('sync', function(event) {
+    console.log("sync event", event);
+    fetch(`config.json?rand=${new Date().getTime()}`).then(res => res.json()).then(data => {
+        if (lastNotificationId != data.notification.id) {
+            lastNotificationId = data.notification.id;
+            self.registration.showNotification(data.notification.title, data.notification).then(evt => {
+                console.log(evt)
+            }).catch(err => {
+                console.log(err)
+            })
 
-    }
-  })
+        }
+    })
 });

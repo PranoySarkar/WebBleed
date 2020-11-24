@@ -1,14 +1,160 @@
-<button onclick="foo()">Grant Permission</button>
-<button onclick="generatePush()">Generate Push Notification</button>
-<script>
-    function foo() {
-        Notification.requestPermission().then(event => {
-            alert(event);
-        });
-    }
+<!DOCTYPE html>
+<html lang="en">
 
-    function generatePush() {
-        const channel = new BroadcastChannel('sw-messages');
-        channel.postMessage({ title: 'Hello from SW' });
-    }
-</script>
+<head>
+    <script>
+        window.addEventListener('load', _ => {
+
+            const channel = new BroadcastChannel('iframeLoadComplete');
+            channel.postMessage({});
+        })
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: #FFF0;
+        }
+        
+        body {
+            margin: 0;
+            color: #636363;
+            font-family: 'Open Sans', sans-serif;
+            max-width: 600px;
+        }
+        
+        .demo {
+            /* background: antiquewhite; */
+            /* display: inline; */
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #c0b9b9;
+        }
+        
+        .form-group {
+            display: grid;
+            justify-content: start;
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            color: #5c6267;
+        }
+        
+        .form-group input {
+            padding: 7px 10px;
+            border-radius: 3px;
+        }
+        
+        .controller {
+            /* background: antiquewhite; */
+            padding: 10px 0;
+            display: flex;
+            /* justify-content: flex-end; */
+        }
+        
+        button {
+            margin: 2px;
+            padding: 7px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>🔔 Notification API</h2>
+    <p>
+        As the gap between website and app is shrinking down the Notification API paly a major role. Now with this API websites can generate notification same as native apps without any difference.
+    </p>
+    <p>
+        To stop people from abusing this API, user has to explicitly give permission.
+    </p>
+
+
+    <div class="demo">
+        <div class="form-group">
+            <label for="">Notification Title</label>
+            <input type="text" id="titleTextFld" value="New API">
+        </div>
+        <div class="form-group">
+            <label for="">Notification Body</label>
+            <input type="text" id="bodyTextFld" value="push notification API added">
+        </div>
+        <div class="form-group">
+            <label for="">Action Button Text</label>
+            <input type="text" id="buttonTextFld" value="view now">
+        </div>
+        <div class="controller">
+            <button onclick="requestPermission()">Grant Permission</button>
+            <button onclick="generatePush()">Generate Notification</button>
+        </div>
+    </div>
+
+    <script>
+        function requestPermission() {
+            Notification.requestPermission().then(event => {
+                alert(event);
+            });
+        }
+
+        function generatePush() {
+
+            if (Notification.permission == 'granted') {
+                const channel = new BroadcastChannel('sw-messages');
+                channel.postMessage({
+                    title: document.querySelector('#titleTextFld').value || '',
+                    body: document.querySelector('#bodyTextFld').value || '',
+                    btn: document.querySelector('#buttonTextFld').value || '',
+                });
+            } else {
+                Notification.requestPermission().then(event => {
+                    if (event == 'granted') {
+                        channel.postMessage({
+                            title: document.querySelector('#titleTextFld').value || '',
+                            body: document.querySelector('#bodyTextFld').value || '',
+                            btn: document.querySelector('#buttonTextFld').value || '',
+                        });
+                    } else {
+                        alert(event);
+                    }
+                });
+
+            }
+
+
+
+        }
+    </script>
+
+    <p>
+        Action buttons are the buttons bellow the notification, You can have multiple action buttons. To check max no of actions allowed
+        <pre>
+        Notification.maxActions
+       </pre>
+        <button onclick="alert(Notification.maxActions)">  Notification.maxActions</button>
+    </p>
+
+    <p>
+        To check the permission status
+        <pre>
+            Notification.permission
+           </pre>
+        <button onclick="alert(Notification.permission)">  Notification.permission</button>
+    </p>
+
+    <ul>
+        <li>
+
+            <a target="_blank" href=" https://developers.google.com/web/updates/2015/05/notifying-you-of-changes-to-notifications">developers.google.com</a>
+            <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification">MDN : ShowNotification</a>
+        </li>
+    </ul>
+</body>
+
+</html>
