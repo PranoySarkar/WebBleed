@@ -170,6 +170,7 @@ iframe {
 
 .componentContent {
     max-width: 600px;
+    margin: auto;
 }
 
 .downloadPrompt {
@@ -243,4 +244,51 @@ iframe {
     display: grid;
     justify-content: center;
     align-items: center;
+}
+
+#installNowPrompt>button {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    border-radius: 50%;
+    background: #689f38;
+    border: 1px solid #316602;
+    color: #FFF;
+    /* display: flex; */
+    /* justify-content: center; */
+    cursor: pointer;
+    outline: unset;
+}
+
+#installNowPrompt {
+    position: fixed;
+    bottom: 10vh;
+    /* right: 10vw; */
+    padding: 2vh;
+    margin: 10px;
+    background: white;
+    border: 3px solid #558B2F;
+    border-radius: 3px;
+    box-shadow: 3px 2px 4px 1px #bbd0a3;
+    display: none;
+    left: 50%;
+    transform: translate(-50%, 0);
+    min-width: 320px;
+}
+
+#installNowPrompt>#installNowPromptContent {
+    /* width: 50%; */
+    /* transform: translate(50%,-50%); */
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    /* justify-content: center; */
+    align-items: center;
+    grid-gap: 4px;
+}
+
+#installNowPromptContent img {
+    max-height: 58px;
+    /* display: none; */
+    grid-row: 1/-1;
 }

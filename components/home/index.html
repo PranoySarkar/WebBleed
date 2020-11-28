@@ -23,7 +23,7 @@
         }
         
         body {
-            margin: 0;
+            margin: auto;
             color: #636363;
             font-family: 'Open Sans', sans-serif;
             max-width: 600px;
@@ -41,11 +41,27 @@
     <p>
         As these are the belleding edge APIs, things minght not support on older version, please upgrade your browser to latest version, if still not resolve feel free to <a target="_blank" href="https://github.com/pranoysarkar">contact me</a>.
     </p>
-    <h1>
+    <p>
 
-    </h1>
+    </p>
+    <h2>
+        Get notification when new API added
+        <button onclick="requestPushNotification()">
+            Enable Push Notification
+        </button>
+    </h2>
+    <script>
+        async function requestPushNotification() {
+            const status = await navigator.permissions.query({
+                name: 'periodic-background-sync',
+            });
+            console.log(status);
+        }
+    </script>
     <a class="twitter-timeline" data-lang="en" data-dnt="true" data-theme="light" href="https://twitter.com/PrnySarkar?ref_src=twsrc%5Etfw"></a>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
 </body>
 
 </html>

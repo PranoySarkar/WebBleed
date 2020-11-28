@@ -80,6 +80,10 @@ let lastNotificationId = -1;
 
 self.addEventListener('sync', function(event) {
     console.log("sync event", event);
+    checkNotification();
+});
+
+function checkNotification() {
     fetch(`config.json?rand=${new Date().getTime()}`).then(res => res.json()).then(data => {
         if (lastNotificationId != data.notification.id) {
             lastNotificationId = data.notification.id;
@@ -91,4 +95,21 @@ self.addEventListener('sync', function(event) {
 
         }
     })
-});
+}
+
+try {
+    registration.periodicSync.register('push-sync', {
+        // An interval of one day.
+        minInterval: 10 * 1000,
+    }).then(_ => {
+        self.addEventListener('periodicsync', (event) => {
+            if (event.tag === 'push-sync') {
+                checkNotification();
+
+            }
+
+        });
+    })
+} catch (error) {
+    console.error(err)
+}
