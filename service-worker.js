@@ -85,7 +85,7 @@ self.addEventListener('sync', function(event) {
 
 function checkNotification() {
     fetch(`config.json?rand=${new Date().getTime()}`).then(res => res.json()).then(data => {
-        if (lastNotificationId != data.notification.id) {
+        if (lastNotificationId != data.notification.id || true) {
             lastNotificationId = data.notification.id;
             self.registration.showNotification(data.notification.title, data.notification).then(evt => {
                 console.log(evt)
@@ -97,19 +97,22 @@ function checkNotification() {
     })
 }
 
-try {
-    registration.periodicSync.register('push-sync', {
-        // An interval of one day.
-        minInterval: 10 * 1000,
-    }).then(_ => {
-        self.addEventListener('periodicsync', (event) => {
-            if (event.tag === 'push-sync') {
-                checkNotification();
+const swEventChannel = new BroadcastChannel('sw-events');
+swEventChannel.addEventListener('message', (evt) => {
+    try {
+        self.registration.periodicSync.register('push-sync', {
+            // An interval of one day.
+            minInterval: 10 * 1000,
+        }).then(_ => {
+            self.addEventListener('periodicsync', (event) => {
+                if (event.tag === 'push-sync') {
+                    checkNotification();
 
-            }
+                }
 
-        });
-    })
-} catch (error) {
-    console.error(err)
-}
+            });
+        })
+    } catch (error) {
+        console.error(err)
+    }
+})
