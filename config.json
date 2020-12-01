@@ -1,7 +1,7 @@
 {
-    "version": 1.99,
+    "version": 1.2,
     "notification": {
-        "id": 12,
+        "id": 14,
         "title": "Contact Picker",
         "body": "Contact Picker API Demo",
         "icon": "assets/icons/icon.png",

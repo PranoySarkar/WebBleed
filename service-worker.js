@@ -102,7 +102,7 @@ swEventChannel.addEventListener('message', (evt) => {
     try {
         self.registration.periodicSync.register('push-sync', {
             // An interval of one day.
-            minInterval: 10 * 1000,
+            minInterval: 24 * 60 * 60 * 1000,
         }).then(_ => {
             self.addEventListener('periodicsync', (event) => {
                 if (event.tag === 'push-sync') {
