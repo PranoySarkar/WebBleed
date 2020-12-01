@@ -52,10 +52,16 @@
     </h2>
     <script>
         async function requestPushNotification() {
-            const status = await navigator.permissions.query({
-                name: 'periodic-background-sync',
-            });
-            alert(status);
+            try {
+                const status = await navigator.permissions.query({
+                    name: 'periodic-background-sync',
+                });
+                console.log(status)
+                alert(JSON.stringify(status.state));
+            } catch (e) {
+                alert(e)
+            }
+
         }
     </script>
     <a class="twitter-timeline" data-lang="en" data-dnt="true" data-theme="light" href="https://twitter.com/PrnySarkar?ref_src=twsrc%5Etfw"></a>
