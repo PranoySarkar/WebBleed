@@ -35,7 +35,7 @@ function showDownloadPrompt() {
 
 window.addEventListener('appinstalled', (evt) => {
     // Log install to analytics
-    alert('Install complete');
+    // alert('Install complete');
 
     /*if (!isInStandaloneMode()) {
         alert('open in app');
@@ -51,7 +51,7 @@ async function foo() {
         alert('Related', relatedApps.length)
         relatedApps.forEach((app) => {
             //if your PWA exists in the array it is installed
-            alert(app.platform, app.url);
+            //   alert(app.platform, app.url);
         });
     }
 }
