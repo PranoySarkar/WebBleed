@@ -48,7 +48,7 @@ window.addEventListener('appinstalled', (evt) => {
 async function foo() {
     if ('getInstalledRelatedApps' in window.navigator) {
         const relatedApps = await navigator.getInstalledRelatedApps();
-        alert('Related', relatedApps.length)
+        //alert('Related', relatedApps.length)
         relatedApps.forEach((app) => {
             //if your PWA exists in the array it is installed
             //   alert(app.platform, app.url);
