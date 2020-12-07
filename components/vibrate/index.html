@@ -86,9 +86,12 @@
 
     <div class="demo">
         <div class="form-group">
+            <p>
+                <pre>navigator.vibrate(pattern);</pre> Here pattern is nothing but array of integers describes alternating periods in which the device is vibrating and not vibrating in milliseconds
+            </p>
             <div class="form-group">
                 <label for="">Pattern</label>
-                <input type="text" id="pattern" value="100,200,100" placeholder="comma separated pattern">
+                <input type="text" id="pattern" value="100,100,200" placeholder="comma separated pattern">
             </div>
             <div class="controller">
                 <button onclick="vibrate()">📳 Vibrate</button>
