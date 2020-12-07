@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        window.addEventListener('load', _ => {
+
+            const channel = new BroadcastChannel('iframeLoadComplete');
+            channel.postMessage({});
+        })
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: #FFF0;
+        }
+        
+        body {
+            margin: auto;
+            color: #636363;
+            font-family: 'Open Sans', sans-serif;
+            max-width: 600px;
+        }
+        
+        .demo {
+            /* background: antiquewhite; */
+            /* display: inline; */
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #c0b9b9;
+        }
+        
+        .form-group {
+            display: grid;
+            justify-content: start;
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            color: #5c6267;
+        }
+        
+        .form-group input {
+            padding: 7px 10px;
+            border-radius: 3px;
+        }
+        
+        .controller {
+            /* background: antiquewhite; */
+            padding: 10px 0;
+            display: flex;
+            /* justify-content: flex-end; */
+        }
+        
+        button {
+            margin: 2px;
+            padding: 7px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>📳 Vibration API</h2>
+    <p>
+        Often forgotten but vibration is one of the powerful way to communicate with the user. We often even don't notice how well it is integrated in this smartphone era. Most of the phone finger print unlock has haptic feedback most of us don't realize that
+        but on wrong match without looking at the screen we can understand what went wrong.
+    </p>
+    <p>
+        From long back vibration api is available in web but very less sites are actually using it, mostly because of the bad UX created by shady sites.
+
+
+    </p>
+    <p>
+        But one that stands out is <b>Twitter</b>, try to do like on any tweets it will give vibration.
+        <a href="https://twitter.com/PrnySarkar" target="_blank">try now</a> Remember : Adding too much vibration surely affect negatively
+    </p>
+
+
+    <div class="demo">
+        <div class="form-group">
+            <div class="form-group">
+                <label for="">Pattern</label>
+                <input type="text" id="pattern" value="100,200,100" placeholder="comma separated pattern">
+            </div>
+            <div class="controller">
+                <button onclick="vibrate()">📳 Vibrate</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function vibrate() {
+            let pattern = document.querySelector('#pattern').value;
+            pattern = pattern.split(',').map(x => {
+                x = x.trim();
+                x = parseInt(x);
+                return x
+            })
+            navigator.vibrate(pattern)
+            console.log('here')
+
+        }
+    </script>
+
+
+
+
+
+    <ul>
+        <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Vibration_API" target="_blank">MDN : Vibration</a>
+        </li>
+
+    </ul>
+</body>
+
+</html>
