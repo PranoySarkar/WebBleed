@@ -1,9 +1,9 @@
 {
-    "version": 1.25,
+    "version": 1.26,
     "notification": {
-        "id": 16,
-        "title": "Contact Picker",
-        "body": "Contact Picker API Demo",
+        "id": 17,
+        "title": "Battery API",
+        "body": "Battery API Demo",
         "icon": "assets/icons/icon.png",
         "actions": [{
             "action": "contact-picker",
