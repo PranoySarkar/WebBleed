@@ -32,8 +32,7 @@
         .demo {
             /* background: antiquewhite; */
             /* display: inline; */
-            padding: 10px;
-            margin: 10px;
+            padding: 5px;
             border: 1px solid #c0b9b9;
         }
         
@@ -106,7 +105,7 @@
                 ondischargingtimechange: batteryStatus.ondischargingtimechange,
                 onlevelchange: batteryStatus.onlevelchange
             }
-            document.querySelector('#batteryData').innerHTML = JSON.stringify(batteryStatus || 'Error', null, '\t')
+            document.querySelector('#batteryData').innerHTML = JSON.stringify(batteryStatus || 'Error', null, ' ')
 
 
         }
@@ -118,7 +117,7 @@
 
     <ul>
         <li>
-            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Vibration_API" target="_blank">MDN : Vibration</a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getBattery" target="_blank">MDN : Battery API</a>
         </li>
 
     </ul>
