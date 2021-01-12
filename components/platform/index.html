@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        window.addEventListener('load', _ => {
+
+            const channel = new BroadcastChannel('iframeLoadComplete');
+            channel.postMessage({});
+        })
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: #FFF0;
+        }
+        
+        body {
+            margin: auto;
+            color: #636363;
+            font-family: 'Open Sans', sans-serif;
+            max-width: 600px;
+        }
+        
+        .demo {
+            /* background: antiquewhite; */
+            /* display: inline; */
+            padding: 5px;
+            border: 1px solid #c0b9b9;
+        }
+        
+        .form-group {
+            display: grid;
+            justify-content: start;
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            color: #5c6267;
+        }
+        
+        .form-group input {
+            padding: 7px 10px;
+            border-radius: 3px;
+        }
+        
+        .controller {
+            /* background: antiquewhite; */
+            padding: 10px 0;
+            display: flex;
+            /* justify-content: flex-end; */
+        }
+        
+        button {
+            margin: 2px;
+            padding: 7px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>💻 Platform API</h2>
+    <p>
+        In many use case we need to know current OS of the user, one of the best use case is while for giving proper download options
+    </p>
+
+
+
+
+    <div class="demo">
+        <div class="form-group">
+            <p>
+                <pre>👉 navigator.platform;</pre> This returns predefined strings like "MacIntel", "Win32", "FreeBSD i386", "WebTV OS"
+            </p>
+
+            <div class="controller">
+                <button onclick="getPlatform()">Get current platform</button>
+            </div>
+
+            <pre id="batteryData">
+
+            </pre>
+        </div>
+
+    </div>
+
+    <script>
+        async function getPlatform() {
+
+            document.querySelector('#batteryData').innerHTML = navigator.platform
+
+
+        }
+    </script>
+
+
+
+
+
+    <ul>
+        <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorID/platform" target="_blank">MDN : navigator.platform</a>
+        </li>
+
+        <li>
+            <a href="https://stackoverflow.com/questions/19877924/what-is-the-list-of-possible-values-for-navigator-platform-as-of-today" target="_blank">stackoverflow.com</a>
+        </li>
+    </ul>
+</body>
+
+</html>

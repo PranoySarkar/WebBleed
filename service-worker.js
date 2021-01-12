@@ -15,6 +15,7 @@ let filesToCache = [
     "components/vibrate/index.html",
 
     "components/battery/index.html",
+    "components/platform/index.html",
 
     "manifest.json"
     // add your assets here 
