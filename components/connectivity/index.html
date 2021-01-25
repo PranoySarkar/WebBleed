@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        window.addEventListener('load', _ => {
+
+            const channel = new BroadcastChannel('iframeLoadComplete');
+            channel.postMessage({});
+        })
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: #FFF0;
+        }
+        
+        body {
+            margin: auto;
+            color: #636363;
+            font-family: 'Open Sans', sans-serif;
+            max-width: 600px;
+        }
+        
+        .demo {
+            /* background: antiquewhite; */
+            /* display: inline; */
+            padding: 5px;
+            border: 1px solid #c0b9b9;
+        }
+        
+        .form-group {
+            display: grid;
+            justify-content: start;
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            color: #5c6267;
+        }
+        
+        .form-group input {
+            padding: 7px 10px;
+            border-radius: 3px;
+        }
+        
+        .controller {
+            /* background: antiquewhite; */
+            padding: 10px 0;
+            display: flex;
+            /* justify-content: flex-end; */
+        }
+        
+        button {
+            margin: 2px;
+            padding: 7px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>📡 Network Info API</h2>
+    <p>
+        Many time you want to know user's internet speed, this is very important for streaming service providing websties so that depending on user's internet speed optimal video quality can be chosen.
+    </p>
+    <p>
+        One more use case is to detect if user is gone offline, as many users are using mobile devices with unpredictable internet service (while traveling) showing message when user has gone offline shifts the frustration from your site to internet provider
+        also logic can be added to show offline content (like micro games)
+    </p>
+
+
+
+
+    <div class="demo">
+        <div class="form-group">
+            <p>
+                <pre>👉 navigator.connection ;</pre> this returns NetworkInformation Object
+            </p>
+
+            <div class="controller">
+                <button onclick="getNetInfo()">Get current Network Info </button>
+            </div>
+
+            <pre id="batteryData">
+
+            </pre>
+        </div>
+
+    </div>
+
+    <script>
+        let netConnection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+
+        async function getNetInfo() {
+
+            let networkInformation  = netConnection;
+            document.querySelector('#batteryData').innerHTML = stringifyNetInfo(networkInformation );
+
+        }
+
+        netConnection.addEventListener('change', evt => {
+            alert(stringifyNetInfo(evt.target));
+        })
+
+
+        function stringifyNetInfo(networkInformation ) {
+            networkInformation  = {
+                downlink: networkInformation.downlink,
+                 
+                effectiveType: networkInformation.effectiveType,
+                onchange: networkInformation.onchange,
+                rtt: networkInformation.rtt,
+                saveData: networkInformation.saveData
+            }
+            return JSON.stringify(networkInformation  || 'Error', null, ' ')
+        }
+    </script>
+
+
+    <p>
+        You can add an onchange listener so that when connection status changes or speed changes you will get event
+
+
+    </p>
+
+
+    <pre>👉 navigator.connection.onchange ;</pre>
+
+
+    <p>
+        Try turing on/of your internet connection
+    </p>
+    <ul>
+        <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API" target="_blank">MDN : navigator.connection</a>
+        </li>
+        <li>
+            <a href="https://caniuse.com/netinfo" target="_blank">caniuse.com : navigator.connection</a>
+        </li>
+    </ul>
+    <p>
+        Although it is an <b>
+            experimental API with limited support
+        </b> but many popular websites are using it.
+    </p>
+</body>
+
+</html>
