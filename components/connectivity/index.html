@@ -102,12 +102,13 @@
         async function getNetInfo() {
 
             let networkInformation  = netConnection;
-            document.querySelector('#batteryData').innerHTML = stringifyNetInfo(networkInformation );
-
+            let temData = stringifyNetInfo(networkInformation );
+            document.querySelector('#batteryData').innerHTML = temData;
+            document.querySelector('#connectChangeData').innerHTML = temData;
         }
 
         netConnection.addEventListener('change', evt => {
-            alert(stringifyNetInfo(evt.target));
+            document.querySelector('#connectChangeData').innerHTML = (stringifyNetInfo(evt.target));
         })
 
 
@@ -134,9 +135,12 @@
 
     <pre>👉 navigator.connection.onchange ;</pre>
 
+    <pre id="connectChangeData">
+
+    </pre>
 
     <p>
-        Try turing on/of your internet connection
+        Try turing on/off your internet connection & check the RTT key above
     </p>
     <ul>
         <li>
