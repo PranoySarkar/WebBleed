@@ -1,9 +1,9 @@
 {
-    "version": 1.29,
+    "version": 1.30,
     "notification": {
         "id": 17,
-        "title": "Battery API",
-        "body": "Battery API Demo",
+        "title": "Network API",
+        "body": "Network API Demo",
         "icon": "assets/icons/icon.png",
         "actions": [{
             "action": "contact-picker",
