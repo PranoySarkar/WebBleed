@@ -1,5 +1,5 @@
 {
-    "version": 1.35,
+    "version": 1.36,
     "notification": {
         "id": 17,
         "title": "Network API",
@@ -10,6 +10,6 @@
             "title": "View Now"
         }]
     },
-    "todo": ["navigator.share", "screen capture"]
+    "todo": ["screen capture"]
 
 }

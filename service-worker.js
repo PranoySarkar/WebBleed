@@ -10,6 +10,7 @@ let filesToCache = [
     "assets/icons/icon.png",
     "assets/icons/arrow.png",
 
+
     "components/home/index.html",
     "components/notification/index.html",
     "components/vibrate/index.html",
@@ -18,6 +19,7 @@ let filesToCache = [
     "components/platform/index.html",
 
     "components/share/index.html",
+    "assets/icons/share.png",
 
     "manifest.json"
     // add your assets here 

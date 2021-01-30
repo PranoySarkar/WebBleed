@@ -126,6 +126,10 @@ body {
     white-space: nowrap;
     /* margin: 7px; */
     border-radius: 3px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 1fr;
+    grid-gap: 4px;
 }
 
 .header {
