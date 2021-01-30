@@ -89,15 +89,15 @@
 
             <div class="form-group">
                 <label for="">Title</label>
-                <input type="text" id="titleTextFld" value="This is title">
+                <input type="text" id="titleTextFld">
             </div>
             <div class="form-group">
                 <label for="">Text</label>
-                <input type="text" id="textTextFld" value="This is text">
+                <input type="text" id="textTextFld">
             </div>
             <div class="form-group">
                 <label for="">Url</label>
-                <input type="text" id="urlTextFld" value="https://pranoysarkar.github.io/WebBleed/">
+                <input type="text" id="urlTextFld">
             </div>
             <div class="form-group">
                 <label for="">File</label>
@@ -119,11 +119,18 @@
     <script>
         async function share() {
 
-            const shareData = {
-                title: document.querySelector('#titleTextFld').value || 'empty',
-                text: document.querySelector('#textTextFld').value || 'empty',
-                url: document.querySelector('#urlTextFld').value || 'empty'
+            let shareData = {}
+
+            if (document.querySelector('#titleTextFld').value) {
+                shareData.title = document.querySelector('#titleTextFld').value;
             }
+            if (document.querySelector('#textTextFld').value) {
+                shareData.text = document.querySelector('#textTextFld').value;
+            }
+            if (document.querySelector('#urlTextFld').value) {
+                shareData.url = document.querySelector('#urlTextFld').value;
+            }
+
 
             let fileField = document.querySelector('#fileField');
             if (fileField.files.length == 0) {
