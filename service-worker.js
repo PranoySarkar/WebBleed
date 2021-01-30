@@ -17,6 +17,8 @@ let filesToCache = [
     "components/battery/index.html",
     "components/platform/index.html",
 
+    "components/share/index.html",
+
     "manifest.json"
     // add your assets here 
     // ❗️❕donot add config.json here ❗️❕
