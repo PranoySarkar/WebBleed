@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        window.addEventListener('load', _ => {
+
+            const channel = new BroadcastChannel('iframeLoadComplete');
+            channel.postMessage({});
+        })
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: #FFF0;
+        }
+        
+        body {
+            margin: auto;
+            color: #636363;
+            font-family: 'Open Sans', sans-serif;
+            max-width: 600px;
+        }
+        
+        .demo {
+            /* background: antiquewhite; */
+            /* display: inline; */
+            padding: 5px;
+            border: 1px solid #c0b9b9;
+        }
+        
+        .form-group {
+            display: grid;
+            justify-content: start;
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            color: #5c6267;
+        }
+        
+        .form-group input {
+            padding: 7px 10px;
+            border-radius: 3px;
+        }
+        
+        .controller {
+            /* background: antiquewhite; */
+            padding: 10px 0;
+            display: flex;
+            /* justify-content: flex-end; */
+        }
+        
+        button {
+            margin: 2px;
+            padding: 7px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>🔗 Share API</h2>
+    <p>
+        Day by day the the gap between native app and a website is minimizing.
+    </p>
+    <p>
+        For any app sharing (image/text) is one of the vital necessity.
+    </p>
+    <p>
+        Image, video, audio, and text files can be shared
+    </p>
+
+
+
+
+    <div class="demo">
+        <div class="form-group">
+            <p>
+                <pre>👉 Navigator.share()</pre>
+            </p>
+
+            <div class="form-group">
+                <label for="">Title</label>
+                <input type="text" id="titleTextFld" value="This is title">
+            </div>
+            <div class="form-group">
+                <label for="">Text</label>
+                <input type="text" id="textTextFld" value="This is text">
+            </div>
+            <div class="form-group">
+                <label for="">Url</label>
+                <input type="text" id="urlTextFld" value="https://pranoysarkar.github.io/WebBleed/">
+            </div>
+            <div class="form-group">
+                <label for="">File</label>
+                <input type="file" id="fileField">
+            </div>
+
+
+            <div class="controller">
+                <button onclick="share()">Share</button>
+            </div>
+
+            <pre id="batteryData">
+
+            </pre>
+        </div>
+
+    </div>
+
+    <script>
+        async function share() {
+
+            const shareData = {
+                title: document.querySelector('#titleTextFld').value || 'empty',
+                text: document.querySelector('#textTextFld').value || 'empty',
+                url: document.querySelector('#urlTextFld').value || 'empty'
+            }
+
+            let fileField = document.querySelector('#fileField');
+            if (fileField.files.length == 0) {
+                console.log('file not selected')
+            } else if (navigator.canShare({
+                    files: fileField.files
+                })) {
+                shareData.files = fileField.files
+
+            } else {
+                console.log('File sharing is not supported')
+            }
+
+            const btn = document.querySelector('button');
+            const resultPara = document.querySelector('#batteryData');
+
+            // Must be triggered some kind of "user activation"
+            try {
+                let x = await navigator.share(shareData)
+                resultPara.textContent = 'MDN shared successfully'
+            } catch (err) {
+                resultPara.textContent = 'Error: ' + err
+            }
+        }
+    </script>
+
+
+
+    <ul>
+        <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share" target="_blank">MDN : navigator.share</a>
+        </li>
+        <li>
+            <a href="https://caniuse.com/web-share" target="_blank">caniuse.com : navigator.connection</a>
+        </li>
+    </ul>
+    <p>
+        Although it is an <b>
+            experimental API
+        </b> on mobile browser support is good including IOS Safari. Many popular websites are using it.
+    </p>
+</body>
+
+</html>

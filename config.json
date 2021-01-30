@@ -1,5 +1,5 @@
 {
-    "version": 1.31,
+    "version": 1.33,
     "notification": {
         "id": 17,
         "title": "Network API",
@@ -9,6 +9,7 @@
             "action": "contact-picker",
             "title": "View Now"
         }]
-    }
+    },
+    "todo": ["navigator.share", "screen capture"]
 
 }
