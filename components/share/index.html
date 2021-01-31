@@ -60,7 +60,14 @@
         
         button {
             margin: 2px;
-            padding: 7px;
+            padding: 3px 7px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            grid-gap: 4px;
+            border: 2px solid #25b7d3;
+            border-radius: 3px;
+            box-shadow: 3px 2px #25b7d33b;
         }
         
         .heading {
@@ -74,7 +81,7 @@
 
     <h2 class="heading">
         <span>
-            <img  style="width: 30px;" src="assets/icons/share.png" alt=""> 
+            <img  style="width: 30px;" src="../../assets/icons/share.png" alt=""> 
         </span>&nbsp;&nbsp;Share API</h2>
     <p>
         Day by day the the gap between native app and website is minimizing. For any app sharing (image/text/video) is one of the necessary feature. This API exactly helps to do that.
@@ -117,7 +124,11 @@
 
 
             <div class="controller">
-                <button onclick="share()">Share</button>
+                <button onclick="share()">
+                    <span>
+                        <img  style="width: 30px;" src="../../assets/icons/share.png" alt=""> 
+                    </span>
+                    Share now</button>
             </div>
 
             <pre id="resultPara">
@@ -175,7 +186,7 @@
             await navigator.share({
                 title: 'I am Exploring WebBleed',
                 url: 'https://pranoysarkar.github.io/WebBleed/',
-                text: 'Hey! 👆WebBleed👆 has awesome connection of latest cutting edge Web APIs with demo, check now ✔️'
+                text: 'Hey! 👆WebBleed👆 has awesome collection of latest cutting edge Web APIs with demo, check now ✔️'
             })
         }
     </script>
