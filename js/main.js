@@ -17,11 +17,14 @@ function main() {
                         document.querySelector('#playgroundIframe').style.display = 'block';
                         document.querySelector('#playgroundIframe').src = ot.dataset.url;
                     }
+                    updateRoute(ot.dataset.page);
                     document.querySelector('#navTog').checked = false
 
                 }
 
             })
+            handleRoute();
+
 
 
 
@@ -29,6 +32,30 @@ function main() {
 
         })
 
+
+}
+
+function handleRoute() {
+    let paramsString = document.location.href.replace(/.*\?/, '')
+    let searchParams = new URLSearchParams(paramsString);
+
+    //Iterate the search parameters.
+    if (searchParams.has('page')) {
+        let routeTo = searchParams.get('page') || '';
+        let navBtn = document.querySelectorAll('.navLinkBtn')
+        for (let eachBtn of navBtn) {
+            let pageId = (eachBtn.dataset.page || '').toLowerCase().trim()
+            if (pageId == routeTo.toLowerCase().trim()) {
+                eachBtn.click();
+            }
+        }
+    }
+
+}
+
+function updateRoute(pageId = '') {
+    pageId = pageId.toLowerCase().trim() || 'home';
+    history.pushState({}, document.title, `?page=${pageId}`)
 }
 
 var iframeWindow = document.getElementById('playgroundIframe').contentWindow
