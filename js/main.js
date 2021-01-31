@@ -12,6 +12,7 @@ function main() {
                     document.querySelectorAll('.component').forEach(e => e.style.display = 'none')
                     if (ot.dataset.inpage) {
                         document.querySelector(`#${ot.dataset.id}`).style.display = `block`;
+                        hideLoader();
                     } else {
                         showLoader();
                         document.querySelector('#playgroundIframe').style.display = 'block';
@@ -49,7 +50,14 @@ function handleRoute() {
                 eachBtn.click();
             }
         }
+    } else {
+        setTimeout(_ => {
+            document.querySelector('#playgroundIframe').src = `components/home/index.html`;
+            updateRoute('home');
+        }, 0)
+
     }
+
 
 }
 
