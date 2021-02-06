@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        window.addEventListener('load', _ => {
+
+            const channel = new BroadcastChannel('iframeLoadComplete');
+            channel.postMessage({});
+        })
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: #FFF0;
+        }
+        
+        body {
+            margin: auto;
+            color: #636363;
+            font-family: 'Open Sans', sans-serif;
+            max-width: 600px;
+        }
+        
+        .demo {
+            /* background: antiquewhite; */
+            /* display: inline; */
+            padding: 5px;
+            border: 1px solid #c0b9b9;
+        }
+        
+        .form-group {
+            display: grid;
+            justify-content: start;
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            color: #5c6267;
+        }
+        
+        .form-group input {
+            padding: 7px 10px;
+            border-radius: 3px;
+        }
+        
+        .controller {
+            /* background: antiquewhite; */
+            padding: 10px 0;
+            display: flex;
+            /* justify-content: flex-end; */
+        }
+        
+        button {
+            margin: 2px;
+            padding: 3px 7px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            grid-gap: 4px;
+            border: 2px solid #25b7d3;
+            border-radius: 3px;
+            box-shadow: 3px 2px #25b7d33b;
+        }
+        
+        .heading {
+            display: flex;
+            align-items: center;
+        }
+        
+        #video {
+            border: 1px solid #999;
+            width: 98%;
+            max-width: 860px;
+        }
+        
+        .error {
+            color: red;
+        }
+        
+        .warn {
+            color: orange;
+        }
+        
+        .info {
+            color: darkgreen;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 class="heading">
+        <span>
+            <img  style="width: 30px;" src="../../assets/icons/share.png" alt=""> 
+        </span>&nbsp;&nbsp;Share API</h2>
+
+    <p>This example shows you the contents of the selected part of your display. Click the Start Capture button to begin.</p>
+
+    <p><button id="start">Start Capture</button>&nbsp;<button id="stop">Stop Capture</button></p>
+
+    <video id="video" autoplay></video>
+    <br>
+
+    <strong>Log:</strong>
+    <br>
+    <pre id="log"></pre>
+
+    <div class="demo"></div>
+
+    <script>
+        const videoElem = document.getElementById("video");
+        const logElem = document.getElementById("log");
+        const startElem = document.getElementById("start");
+        const stopElem = document.getElementById("stop");
+
+        // Options for getDisplayMedia()
+
+        var displayMediaOptions = {
+            video: {
+                cursor: "always"
+            },
+            audio: false
+        };
+
+        // Set event listeners for the start and stop buttons
+        startElem.addEventListener("click", function(evt) {
+            startCapture();
+        }, false);
+
+        stopElem.addEventListener("click", function(evt) {
+            stopCapture();
+        }, false);
+
+        function dumpOptionsInfo() {
+            const videoTrack = videoElem.srcObject.getVideoTracks()[0];
+
+            console.info("Track settings:");
+            console.info(JSON.stringify(videoTrack.getSettings(), null, 2));
+            console.info("Track constraints:");
+            console.info(JSON.stringify(videoTrack.getConstraints(), null, 2));
+        }
+
+        function stopCapture(evt) {
+            let tracks = videoElem.srcObject.getTracks();
+
+            tracks.forEach(track => track.stop());
+            videoElem.srcObject = null;
+        }
+
+
+        async function startCapture() {
+            logElem.innerHTML = "";
+
+            try {
+                videoElem.srcObject = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
+                dumpOptionsInfo();
+            } catch (err) {
+                console.error("Error: " + err);
+            }
+        }
+    </script>
+
+
+
+    <ul>
+        <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share" target="_blank">MDN : navigator.share</a>
+        </li>
+        <li>
+            <a href="https://caniuse.com/web-share" target="_blank">caniuse.com : navigator.share</a>
+        </li>
+    </ul>
+    <p>
+        Although it is an <b>
+            experimental API
+        </b> but support on mobile browser is good including IOS Safari and also supported of Desktop edge. Many popular websites are using it now on production
+    </p>
+</body>
+
+</html>
