@@ -1,5 +1,5 @@
 {
-    "version": 1.45,
+    "version": 1.46,
     "notification": {
         "id": 17,
         "title": "Network API",
@@ -10,6 +10,6 @@
             "title": "View Now"
         }]
     },
-    "todo": ["screen capture"]
+    "todo": []
 
 }
