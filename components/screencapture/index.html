@@ -99,53 +99,71 @@
 
     <h2 class="heading">
         <span>
-            <img  style="width: 30px;" src="../../assets/icons/share.png" alt=""> 
-        </span>&nbsp;&nbsp;Share API</h2>
+            <img  style="width: 30px;" src="../../assets/icons/screenshare.png" alt=""> 
+        </span>&nbsp;&nbsp;Screen Capture API</h2>
 
-    <p>This example shows you the contents of the selected part of your display. Click the Start Capture button to begin.</p>
+    <p>Even wondered how google meet allows you to share screen without installing anything not even any extension, so how it works ?</p>
+    <div>
+        <pre>👉 getDisplayMedia() </pre>
+    </div>
+    <p>
+        This powerful JS API which gets first class support from all majors browsers including safari , now you can share screen, window or tab natively from browser itself, no need to install or add any thing. (no support for mobile browsers)
+    </p>
+    <p>
+        Screen sharing is most important part of videos calls. Only for this api Google meet can allow user to share screen. So apps like Google Meet is entirely an webapp which is a great milestone for web development history. What a great time to be alive
+    </p>
 
-    <p><button id="start">Start Capture</button>&nbsp;<button id="stop">Stop Capture</button></p>
+    <p>
+        One other use cases can be used for tech supports, now users will be able to share screen in just 2 click which will be game changing and also quite dangerous
+    </p>
+    <div class="demo">
+        <div class="form-group">
 
-    <video id="video" autoplay></video>
-    <br>
+            <pre>👉 getDisplayMedia()</pre>
 
-    <strong>Log:</strong>
-    <br>
-    <pre id="log"></pre>
+            <p>This returns a promise that resolves to MediaStream</p>
 
-    <div class="demo"></div>
+            <div class="controller">
+                <p>
+                    <button id="start" onclick="startCapture()">Start Capture</button>
+                    <button id="stop" onclick="stopCapture()">Stop Capture</button>
+                </p>
+
+
+            </div>
+
+            <pre id="resultPara">
+
+            </pre>
+            <video id="video" autoplay></video>
+        </div>
+
+    </div>
+
+
+
+
 
     <script>
         const videoElem = document.getElementById("video");
-        const logElem = document.getElementById("log");
-        const startElem = document.getElementById("start");
-        const stopElem = document.getElementById("stop");
+        const logElem = document.getElementById("resultPara");
 
-        // Options for getDisplayMedia()
-
-        var displayMediaOptions = {
+        const displayMediaOptions = {
             video: {
                 cursor: "always"
             },
-            audio: false
+            audio: true
         };
 
-        // Set event listeners for the start and stop buttons
-        startElem.addEventListener("click", function(evt) {
-            startCapture();
-        }, false);
 
-        stopElem.addEventListener("click", function(evt) {
-            stopCapture();
-        }, false);
+
 
         function dumpOptionsInfo() {
             const videoTrack = videoElem.srcObject.getVideoTracks()[0];
-
-            console.info("Track settings:");
-            console.info(JSON.stringify(videoTrack.getSettings(), null, 2));
-            console.info("Track constraints:");
-            console.info(JSON.stringify(videoTrack.getConstraints(), null, 2));
+            logElem.innerHTML += ("\nTrack settings:");
+            logElem.innerHTML += (JSON.stringify(videoTrack.getSettings(), null, 2));
+            logElem.innerHTML += ("\nTrack constraints:");
+            logElem.innerHTML += (JSON.stringify(videoTrack.getConstraints(), null, 2));
         }
 
         function stopCapture(evt) {
@@ -157,13 +175,13 @@
 
 
         async function startCapture() {
-            logElem.innerHTML = "";
+            logElem.innerHTML = "logs:\n";
 
             try {
                 videoElem.srcObject = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
                 dumpOptionsInfo();
             } catch (err) {
-                console.error("Error: " + err);
+                logElem.innerHTML += ("Error: " + err);
             }
         }
     </script>
@@ -172,16 +190,14 @@
 
     <ul>
         <li>
-            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share" target="_blank">MDN : navigator.share</a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Screen_Capture_API/Using_Screen_Capture" target="_blank">MDN : Screen Capture API</a>
         </li>
         <li>
-            <a href="https://caniuse.com/web-share" target="_blank">caniuse.com : navigator.share</a>
+            <a href="https://caniuse.com/?search=getDisplayMedia" target="_blank">caniuse.com : Screen Capture API</a>
         </li>
     </ul>
     <p>
-        Although it is an <b>
-            experimental API
-        </b> but support on mobile browser is good including IOS Safari and also supported of Desktop edge. Many popular websites are using it now on production
+        As of now (Feb, 2021) all major desktop browsers supports this api, no no support for mobile device.
     </p>
 </body>
 
