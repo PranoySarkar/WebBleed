@@ -21,6 +21,11 @@ let filesToCache = [
     "components/share/index.html",
     "assets/icons/share.png",
 
+    "components/screencapture/index.html",
+    "assets/icons/screenshare.png",
+
+    "components/url/index.html",
+
     "manifest.json"
     // add your assets here 
     // ❗️❕donot add config.json here ❗️❕

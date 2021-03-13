@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        window.addEventListener('load', _ => {
+
+            const channel = new BroadcastChannel('iframeLoadComplete');
+            channel.postMessage({});
+        })
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: #FFF0;
+        }
+        
+        body {
+            margin: auto;
+            color: #636363;
+            font-family: 'Open Sans', sans-serif;
+            max-width: 600px;
+        }
+        
+        .demo {
+            /* background: antiquewhite; */
+            /* display: inline; */
+            padding: 5px;
+            border: 1px solid #c0b9b9;
+        }
+        
+        .form-group {
+            display: grid;
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            color: #5c6267;
+        }
+        
+        .form-group input {
+            padding: 7px 10px;
+            border-radius: 3px;
+        }
+        
+        .controller {
+            /* background: antiquewhite; */
+            padding: 10px 0;
+            display: flex;
+            /* justify-content: flex-end; */
+        }
+        
+        button {
+            margin: 2px;
+            padding: 3px 7px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            grid-gap: 4px;
+            border: 2px solid #25b7d3;
+            border-radius: 3px;
+            box-shadow: 3px 2px #25b7d33b;
+        }
+        
+        .heading {
+            display: flex;
+            align-items: center;
+        }
+        
+        #video {
+            border: 1px solid #999;
+            width: 98%;
+            max-width: 860px;
+        }
+        
+        .error {
+            color: red;
+        }
+        
+        .warn {
+            color: orange;
+        }
+        
+        .info {
+            color: darkgreen;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 class="heading">
+        <span>
+          🌐
+        </span>&nbsp;&nbsp;URL API</h2>
+
+    <p>Elegant way to handle URLs on web</p>
+    <p>
+      Many time we have to have deal with URLs, sometime to find out domain/port/path but most widely used use case is to access the search params 
+      (or query params).
+      The usual way to do this by regular expression, but it has to be perfect or else catastrophe is waiting for you.
+    </p>
+    <p>Solution </p>
+    <div>
+        <pre>👉 new URL() </pre>
+    </div>
+    <p>
+      This also gives access to URLSearchParams(), that means you get access to all query parameters.
+     </p>
+    <div class="demo">
+      <div class="form-group">
+        <label for="">URL</label>
+        <input type="text" id="titleTextFld" placeholder="any url">
+    </div>
+
+      <p>
+        <pre>👉 new URL(URL) </pre>
+    </p>
+
+    <pre id="resultPara">
+
+    </pre>
+
+    <div class="controller">
+      <button onclick="execute()">Execute</button>
+      </div>
+     
+      <div class="demo">
+        <div class="form-group">
+          <label for="">Search Parameter</label>
+          <input type="text" id="searchParamsTxtFld" value="page" placeholder="any query parameter">
+      </div>
+      <div class="controller">
+        <button onclick="find()">Execute</button>
+        </div>
+        </div>
+
+  </div>
+
+  <script>
+      document.querySelector('#titleTextFld').value=`https://pranoysarkar.github.io/WebBleed?page=screen-capture`;
+
+      async function execute() {
+        let url= new URL( document.querySelector('#titleTextFld').value)
+        document.querySelector('#resultPara').innerHTML=stringify(url);
+      }
+
+    
+
+      function stringify(obj) {
+        let newObj={};
+        for (let eachProp of  Object.getOwnPropertyNames(obj.__proto__)){
+          if(["toJSON", "toString", "constructor"].includes(eachProp)==false){
+            newObj[eachProp]=obj[eachProp]
+          }
+          }
+        return JSON.stringify(newObj || 'Error', null, ' ')
+      }
+
+      function find(){
+        let url= new URL( document.querySelector('#titleTextFld').value);
+        alert(url.searchParams.get(document.querySelector('#searchParamsTxtFld').value));
+      }
+  </script>
+
+
+
+    <ul>
+        <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL_API" target="_blank">MDN : URL API</a>
+        </li>
+        <li>
+            <a href="https://caniuse.com/url" target="_blank">caniuse.com : Screen Capture API</a>
+        </li>
+    </ul>
+    <p>
+        As of now (Feb, 2021) all major desktop browsers supports this api
+    </p>
+</body>
+
+</html>
